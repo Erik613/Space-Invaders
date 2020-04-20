@@ -6,33 +6,41 @@ import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.util.ArrayList;
 
+/*
+ * class represents game display
+ * all game objects & action are
+ * seen on Screen
+ */
 public class Screen extends JPanel implements ActionListener {
-
+    /* Screen attributes */
     private Timer timer;
     private Spaceship spaceship;
     private final int DELAY = 15;
-    public static int dimensionX = 500;
-    public static int dimensionY = 500;
+    public static int dimensionX = Config.BOARD_WIDTH;
+    public static int dimensionY = Config.BOARD_HEIGHT;
     private KeyPressedListener keyListener;
 
 
     public Screen() {
-        initScreen();
+        initScreen();       //brauchen wir initScreen, kann man das nicht einfach durch den Body von
+                            //initScreen ersetzen? Oder hat das einen aesthetischen Grund?
     }
 
     private void initScreen() {
-        setBackground(Color.BLACK);
-
-        spaceship = new Spaceship();
-        keyListener = new KeyPressedListener();
-
-
         timer = new Timer(DELAY, this);
         timer.start();
+        //set basic structure for game display
+        setBackground(Config.BACKGROUND);
         setSize(dimensionX, dimensionY);
+
+        //create player Icon & add KeyListener
+        spaceship = new Spaceship();
+        keyListener = new KeyPressedListener();
+        this.addKeyListener(keyListener);
+
         System.out.println(getHeight() + " " + getWidth());
         this.setVisible(true);
-        this.addKeyListener(keyListener);
+
         //addKeyListener(new ShootAdapter(spaceship.getGun().COOLDOWN));
         setFocusable(true);
 
@@ -46,6 +54,7 @@ public class Screen extends JPanel implements ActionListener {
 
     }
 
+    /* connects keys with movement on Screen */
     private void doKeyActions() {
         if(keyListener.getPressedKeys().contains(KeyPressedListener.MOVE_RIGHT))
             spaceship.setMoveDirectionRight();
@@ -57,21 +66,24 @@ public class Screen extends JPanel implements ActionListener {
             spaceship.getGun().shoot(spaceship.getX());
     }
 
-
+    /* draw game pieces on Screen */
     private void draw(Graphics graphics) {
         Graphics2D g2d = (Graphics2D) graphics;
 
-        //Spaceship zeichenen
-        g2d.setColor(Color.BLUE);
+        //draw spaceship
+        g2d.setColor(Config.SPACESHIP_COLOR);
         g2d.drawRect(spaceship.getX(), spaceship.getY(), spaceship.getHeight(), spaceship.getWidth());
-        //Kugeln Zeichnen
+
+        //draw bullets
         if(Bullet.getBullets() != null  && !Bullet.getBullets().isEmpty()) {
+            g2d.setColor(Config.BULLET_COLOR);
             for (Bullet b : Bullet.getBullets()) {
                 g2d.drawRect(b.getX(), b.getY(), b.getHeigth(), b.getWidth());
             }
         }
-        //Enemies Zeichenen
-        g2d.setColor(Color.RED);
+        //draw enemies
+        g2d.setColor(Config.ENEMY_COLOR);
+        //draw a rectangle for each enemy stored in Enemy
         for(Enemy e : Enemy.getEnemies()) {
             g2d.drawRect(e.getX(), e.getY(), e.getHeight(), e.getWidth());
         }

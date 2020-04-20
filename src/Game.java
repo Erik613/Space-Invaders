@@ -1,15 +1,15 @@
 import javax.swing.*;
-
+/* game object */
 public class Game implements Runnable {
     private JFrame frame;
-    private Screen screen;
+    private Screen screen;  //display for the game
 
 
     public Game(){
         screen = new Screen();
 
         frame = new JFrame();
-        frame.setSize(500, 500);
+        frame.setSize(Config.BOARD_WIDTH, Config.BOARD_HEIGHT);
         frame.setVisible(true);
         frame.setResizable(false);
         frame.add(screen);

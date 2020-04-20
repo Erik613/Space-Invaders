@@ -4,8 +4,33 @@ import java.awt.event.KeyEvent;
 import java.util.ArrayList;
 import java.util.List;
 
+/*
+ * class represents player character
+ */
 public class Spaceship extends DrawableObject{
+    /* spaceship attributes */
     private int speed;
+    private int width;
+    private int height;
+    private int moveSpeedX;
+    //private int moveSpeedY;
+    private Gun gun;
+
+
+    public Spaceship() {
+        this.width = Config.SPACESHIP_WIDTH;
+        this.height = Config.SPACESHIP_HEIGHT;
+        try {
+            this.setX(235);
+            this.setY(400);
+        }catch (Exception ex) {
+            System.out.println(ex);
+        }
+        this.moveSpeedX = 0;
+        this.speed = 5;
+        //get new Gun Object for spaceship
+        gun = new Gun(Config.SPACESHIP_GUN_COOLDOWN);
+    }
 
     public int getWidth() {
         return width;
@@ -15,27 +40,7 @@ public class Spaceship extends DrawableObject{
         return height;
     }
 
-    private int width;
-    private int height;
-    private int moveSpeedX;
-    private int moveSpeedY;
 
-    private Gun gun;
-
-
-    public Spaceship() {
-        this.width = 15;
-        this.height = 25;
-        try {
-            this.setX(235);
-            this.setY(400);
-        }catch (Exception ex) {
-            System.out.println(ex);
-        }
-        this.moveSpeedX = 0;
-        this.speed = 5;
-        gun = new Gun(600);
-    }
 
 
 

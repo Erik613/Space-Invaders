@@ -2,7 +2,11 @@ import java.util.ArrayList;
 import java.util.ConcurrentModificationException;
 import java.util.List;
 
+/* class represents bullets
+ * shot by player char & enemies
+ */
 public class Bullet {
+    /* bullet attributes */
     private int width;
     private int heigth;
     private int speed;
@@ -32,9 +36,9 @@ public class Bullet {
     }
 
     public Bullet(int x){
-        this.width = 3;
-        this.heigth = 15;
-        this.speed = 20;
+        this.width = Config.BULLET_WIDTH ;
+        this.heigth = Config.BULLET_HEIGHT;
+        this.speed = Config.BULLET_SPEED;
         this.x = x;
         this.y = 400;
         this.isFired = true;

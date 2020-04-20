@@ -1,7 +1,11 @@
 import java.util.Timer;
 import java.util.TimerTask;
-
+/*
+ * gun class, enabeles game characters
+ * to shoot bullets
+ */
 public class Gun {
+    /* gun attributes */
     public final int COOLDOWN;
     private boolean isReady;
     private Timer timer;

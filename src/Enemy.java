@@ -17,9 +17,9 @@ public class Enemy extends DrawableObject {
 
 
     private Enemy() {
-        this.height = 25;
-        this.width = 15;
-        gun = new Gun(15000);
+        this.height = Config.ENEMY_HEIGHT;
+        this.width = Config.ENEMY_WIDTH;
+        gun = new Gun(Config.ENEMY_GUN_COOLDOWN);
         enemies.add(this);
 
     }
@@ -29,7 +29,7 @@ public class Enemy extends DrawableObject {
         if (enemies != null)
             return enemies;
         enemies = new ArrayList<Enemy>();
-        for (int x = 25; x < 475; x += 50) {
+        for (int x = Config.BOARD_BORDER_LEFT; x < (Config.BOARD_WIDTH - Config.BOARD_BORDER_RIGHT); x += 50) {
             for (int y = 25; y < 201; y += 50) {
                 Enemy e = new Enemy();
                 try {
