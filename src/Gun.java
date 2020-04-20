@@ -16,7 +16,6 @@ public class Gun {
     public void shoot(int x) {
         if(isReady) {
             new Bullet(x);
-            new Bullet(x);
             isReady = false;
             timer.schedule(new TimerTask() {
                 @Override

@@ -33,7 +33,6 @@ public class Screen extends JPanel implements ActionListener {
         System.out.println(getHeight() + " " + getWidth());
         this.setVisible(true);
         this.addKeyListener(keyListener);
-        //addKeyListener(new ShootAdapter(spaceship.getGun().COOLDOWN));
         setFocusable(true);
 
     }
@@ -91,41 +90,4 @@ public class Screen extends JPanel implements ActionListener {
         step();
 
     }
-
-
-    //Brauche Multiple keylistener
-    private class ShootAdapter extends KeyAdapter {
-        private Timer t;
-        private boolean isReady;
-
-        public ShootAdapter(int delay) {
-            t = new Timer(delay, actionEvent -> isReady = true);
-            t.setRepeats(false);
-        }
-        @Override
-        public void keyPressed(KeyEvent keyEvent) {
-            if (keyEvent.getKeyCode() == KeyEvent.VK_SPACE) {
-
-                if(!t.isRunning()) {
-                    isReady = false;
-                    t.start();
-                    spaceship.getGun().shoot(spaceship.getX());
-
-                }
-            }
-        }
-
-        @Override
-        public void keyReleased(KeyEvent keyEvent) {
-            if (keyEvent.getKeyCode() == KeyEvent.VK_SPACE) {
-                //pressed = false;
-                System.out.println("released");
-            }
-        }
-    }
-
-
-
-
-
 }
