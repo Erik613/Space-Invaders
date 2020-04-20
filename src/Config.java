@@ -15,7 +15,7 @@ public interface Config {
     int ENEMY_HEIGHT = 25;
     int ENEMY_SPEED = 20;
     Color ENEMY_COLOR = Color.RED;
-    int ENEMY_ENTCOUNTERS = 15;
+    int ENEMY_ENCOUNTERS = 15;
 
     int BULLET_WIDTH = 3;
     int BULLET_HEIGHT = 15;
