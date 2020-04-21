@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.Iterator;
 
 public class Enemy extends DrawableObject {
 
@@ -32,6 +33,41 @@ public class Enemy extends DrawableObject {
             }
         }
         return enemies;
+    }
+
+    public void moveAliens(){
+        ArrayList<Enemy> aliens = Enemy.getEnemies();
+        Iterator iAlien2 = aliens.iterator();
+        int direction = 2;
+        int counter = 0;
+
+        while(iAlien2.hasNext()){
+            Enemy alien = (Enemy)iAlien2.next();
+            int x = alien.getX();
+            try {
+                alien.setX(x += direction);
+            }catch(Exception ex){
+                System.out.println(ex);
+            }
+            if(x==475){
+                try{
+                    //alien.setY(alien.getY()+1);
+                    alien.setX(x -=direction);
+                }catch(Exception ex){
+                    System.out.println(ex);
+                }
+            }
+            if(x==25){
+                try{
+                    //alien.setY(alien.getY() +1);
+                    alien.setX(x += direction);
+                }catch(Exception ex){
+                    System.out.println(ex);
+                }
+            }
+
+        }
+
     }
 
     @Override
