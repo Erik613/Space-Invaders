@@ -7,17 +7,19 @@ import java.awt.*;
 
 public interface Config {
     //settings for the Board
-    int BOARD_WIDTH = 500;
-    int BOARD_HEIGHT = 500;
-    int BOARD_BORDER_LEFT = 25;
-    int BOARD_BORDER_RIGHT = 25;
+    int BOARD_WIDTH = 1024;
+    int BOARD_HEIGHT = 720;
+    int BOARD_BORDER_LEFT = 30;
+    int BOARD_BORDER_RIGHT = 30;
     Color BACKGROUND = Color.BLACK;
 
     //settings for the players character
-    int SPACESHIP_WIDTH = 25;
-    int SPACESHIP_HEIGHT = 15;
+    int SPACESHIP_WIDTH = 40;
+    int SPACESHIP_HEIGHT = 20;
     Color SPACESHIP_COLOR = Color.BLUE;
     int SPACESHIP_GUN_COOLDOWN = 600;
+    int SPACESHIP_POSITIONY = 590;
+    int SPACESHIP_POSITIONX = 510;
 
     //settings for the enemies
     int ENEMY_WIDTH = 25;

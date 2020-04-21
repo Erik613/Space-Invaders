@@ -23,8 +23,8 @@ public class Spaceship extends DrawableObject{
         this.height = Config.SPACESHIP_HEIGHT;
         this.isAlive = true;
         try {
-            this.setX(235);
-            this.setY(400);
+            this.setX(Config.SPACESHIP_POSITIONX);
+            this.setY(Config.SPACESHIP_POSITIONY);
         }catch (Exception ex) {
             System.out.println(ex);
         }
