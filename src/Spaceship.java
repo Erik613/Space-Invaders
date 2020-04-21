@@ -49,7 +49,7 @@ public class Spaceship extends DrawableObject{
 
 
     public void move() {
-        if(getX() >= 0 && getX()<= 480)
+        if(getX() >= 0 && getX()<= Config.BOARD_WIDTH)
             try {
                 setX(getX() + moveSpeedX);
             }catch (Exception ex) {
