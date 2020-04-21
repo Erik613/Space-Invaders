@@ -1,27 +1,18 @@
 import java.util.ArrayList;
 
 public class Enemy extends DrawableObject {
-    private int height;
-    private int width;
+
 
     private Gun gun;
     private static ArrayList<Enemy> enemies;
 
-    public int getHeight() {
-        return height;
-    }
 
-    public int getWidth() {
-        return width;
-    }
-
-
-    private Enemy() {
-        this.height = Config.ENEMY_HEIGHT;
-        this.width = Config.ENEMY_WIDTH;
+    private Enemy () {
+        gun = new Gun(15000);
+        setHeight(Config.ENEMY_HEIGHT);
+        setWidth(Config.ENEMY_WIDTH);
         gun = new Gun(Config.ENEMY_GUN_COOLDOWN);
         enemies.add(this);
-
     }
 
     public static ArrayList<Enemy> getEnemies() {
