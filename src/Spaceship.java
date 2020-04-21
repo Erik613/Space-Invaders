@@ -31,7 +31,7 @@ public class Spaceship extends DrawableObject{
         this.moveSpeedX = 0;
         this.speed = 5;
         //get new Gun Object for spaceship
-        gun = new Gun(Config.SPACESHIP_GUN_COOLDOWN);
+        gun = new Gun(Config.SPACESHIP_GUN_COOLDOWN, Bullet.BulletType.BULLET_SPACESHIP);
     }
 
     public int getWidth() {
@@ -79,4 +79,5 @@ public class Spaceship extends DrawableObject{
     public void destroy() {
         this.isAlive = false;
     }
+
 }
