@@ -20,8 +20,8 @@ public class Enemy extends DrawableObject {
         if (enemies != null)
             return enemies;
         enemies = new ArrayList<Enemy>();
-        for (int x = Config.BOARD_BORDER_LEFT; x < (Config.BOARD_WIDTH - Config.BOARD_BORDER_RIGHT); x += 50) {
-            for (int y = 25; y < 201; y += 50) {
+        for (int x = Config.BOARD_BORDER_LEFT; x < (Config.BOARD_WIDTH - Config.BOARD_BORDER_RIGHT); x += Config.BOARD_WIDTH/9) {
+            for (int y = Config.BOARD_BORDER_RIGHT; y < Config.BOARD_HEIGHT/2; y += Config.BOARD_WIDTH/9) {
                 Enemy e = new Enemy();
                 try {
                     e.setX(x);
