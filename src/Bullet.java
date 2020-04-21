@@ -2,26 +2,41 @@ import java.util.ArrayList;
 import java.util.ConcurrentModificationException;
 import java.util.List;
 
-public class Bullet extends DrawableObject {
-    private int speed;
-    private boolean isFired;
+public abstract class Bullet extends DrawableObject {
+    protected int speed;
+    protected boolean isFired;
+    private BulletType type;
+    private static BulletFactory bulletFactory = new BulletFactory();
     private static List <Bullet> bullets = new ArrayList<>();
 
     public static List<Bullet> getBullets() {
         return bullets;
     }
 
+    public BulletType getType() {
+        return type;
+    }
 
-    public Bullet(int x){
+    public enum BulletType {
+        BULLET_ENEMY,
+        BULLET_SPACESHIP
+    }
+
+    public static void newBullet(BulletType type, int x, int y) {
+        bulletFactory.getBulletType(type, x, y);
+    }
+
+    private Bullet(BulletType type, int x, int y){
         try {
             setX(x + Config.SPACESHIP_WIDTH / 2);
-            setY(Config.SPACESHIP_POSITIONY);
+            setY(y);
         }catch (Exception ex) {
             System.out.println(ex);
         }
+        this.type = type;
         setHeight(15);
         setWidth(2);
-        this.speed = 20;
+        this.speed = 5;
         this.isFired = true;
         bullets.add(this);
     }
@@ -39,21 +54,44 @@ public class Bullet extends DrawableObject {
     }
 
 
-    private void moveMe() {
-        if(isFired) {
-            try {
-                if (getY() > 0)
-                    setY(getY() - speed);
-                else
-                    this.destroy();
-            }catch (Exception ex) {
-                this.destroy();
-            }
-        }
-    }
+    protected abstract void moveMe();
 
     public void destroy() {
         this.isFired = false;
         bullets.remove(this);
+    }
+
+    private static class BulletFactory {
+
+        public Bullet getBulletType(BulletType type, int x, int y) {
+            if(type.equals(BulletType.BULLET_ENEMY)) {
+                return new Bullet(type, x, y) {
+                    @Override
+                    protected void moveMe() {
+                        if(isFired) {
+                            try {
+                                setY(getY() + speed);
+                            }catch (Exception ex) {
+                                this.destroy();
+                            }
+                        }
+                    }
+                };
+            } else {//type == BulletType.BULLET_SPACESHIP) {
+                return new Bullet(type, x, y) {
+                    @Override
+                    protected void moveMe() {
+                        if(isFired) {
+                            try {
+                                setY(getY() - speed);
+                            }catch (Exception ex) {
+                                this.destroy();
+                            }
+                        }
+                    }
+                };
+            }
+        }
+
     }
 }

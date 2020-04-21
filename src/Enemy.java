@@ -1,17 +1,20 @@
 import java.util.ArrayList;
+import java.util.Timer;
+import java.util.TimerTask;
 
 public class Enemy extends DrawableObject {
 
 
     private Gun gun;
+    private static boolean canShoot = true;
     private static ArrayList<Enemy> enemies;
 
 
     private Enemy () {
-        gun = new Gun(15000);
+        //gun = new Gun(15000, BulletFactory.BulletType.BULLET_ENEMY);
         setHeight(Config.ENEMY_HEIGHT);
         setWidth(Config.ENEMY_WIDTH);
-        gun = new Gun(Config.ENEMY_GUN_COOLDOWN);
+        gun = new Gun(Config.ENEMY_GUN_COOLDOWN, Bullet.BulletType.BULLET_ENEMY);
         enemies.add(this);
     }
 
@@ -32,6 +35,21 @@ public class Enemy extends DrawableObject {
             }
         }
         return enemies;
+    }
+
+    public static void randomShoot() {
+        if(enemies == null || !canShoot)
+            return;
+        Timer t = new Timer();
+        int index = (int)(Math.random() * enemies.size());
+        enemies.get(index).gun.shoot(enemies.get(index).getX(), enemies.get(index).getY());
+        canShoot = false;
+        t.schedule(new TimerTask() {
+            @Override
+            public void run() {
+                canShoot = true;
+            }
+        }, 5000);
     }
 
     @Override
