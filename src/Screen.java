@@ -2,6 +2,8 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
+import java.util.Iterator;
 
 /*
  * class represents game display
@@ -46,6 +48,9 @@ public class Screen extends JPanel implements ActionListener {
         doKeyActions();
         spaceship.move();
         Bullet.move();
+        //j
+        moveAliens();
+        //j
         Enemy.randomShoot();
             try {
                 for (Bullet b : Bullet.getBullets()) {
@@ -63,6 +68,56 @@ public class Screen extends JPanel implements ActionListener {
 
             }
     }
+    //j
+    public void moveAliens() {
+        ArrayList<Enemy> aliens = Enemy.getEnemies();
+        Iterator iAlien = aliens.iterator();
+        int speed = 2;
+        boolean moveToLeft = true;
+        boolean moveToRight = false;
+
+        // moves aliens right or left
+        while (iAlien.hasNext()) {
+            Enemy alien = (Enemy) iAlien.next();
+            //int x = alien.getX();
+            if(moveToLeft == true) {
+                try {
+                    alien.setX(alien.getX() - speed);
+                } catch (Exception ex) {
+                    moveToLeft = false;
+                    moveToRight = true;
+                }
+            }
+                else if (moveToRight == true) {
+                    try {
+                        alien.setX(alien.getX() + speed);
+                    } catch (Exception ex) {
+                        moveToLeft = true;
+                        moveToRight = false;
+                    }
+                }
+            }
+        }
+
+            /*try {
+                alien.setX(x - speed);  // moves left
+            } catch (Exception ex) {
+                try {
+                    alien.setY(alien.getY() + 15);     // moves down
+                    while(true) {
+                        try {
+                            alien.setX(alien.getX() + speed); // moves right
+                        } catch (Exception ex3) {
+                            break;
+                        }
+                    }
+                } catch (Exception ex2) {
+                    try { alien.setY(alien.getY() + 5); } // moves down
+                    catch (Exception ex3) { System.out.println(ex3); }
+                    }
+                }*/
+
+
 
     /* connects keys with movement on Screen */
     private void doKeyActions() {
