@@ -34,24 +34,4 @@ public class KeyPressedListener extends KeyAdapter{
         return pressedKeys;
     }
 
-/*
-    private class MoveAdapter extends KeyAdapter {
-
-        @Override
-        public void keyPressed(KeyEvent keyEvent) {
-            switch (keyEvent.getKeyCode()) {
-                case KeyEvent.VK_LEFT:
-                    moveSpeedX = -5;
-                    break;
-                case KeyEvent.VK_RIGHT:
-                    moveSpeedX = 5;
-                    break;
-            }
-        }
-
-        @Override
-        public void keyReleased(KeyEvent keyEvent) {
-            moveSpeedX = 0;
-        }
-    }*/
 }

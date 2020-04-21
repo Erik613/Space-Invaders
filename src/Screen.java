@@ -22,8 +22,7 @@ public class Screen extends JPanel implements ActionListener {
 
 
     public Screen() {
-        initScreen();       //brauchen wir initScreen, kann man das nicht einfach durch den Body von
-                            //initScreen ersetzen? Oder hat das einen aesthetischen Grund?
+        initScreen();
     }
 
     private void initScreen() {
@@ -103,41 +102,4 @@ public class Screen extends JPanel implements ActionListener {
         step();
 
     }
-
-
-    //Brauche Multiple keylistener
-    private class ShootAdapter extends KeyAdapter {
-        private Timer t;
-        private boolean isReady;
-
-        public ShootAdapter(int delay) {
-            t = new Timer(delay, actionEvent -> isReady = true);
-            t.setRepeats(false);
-        }
-        @Override
-        public void keyPressed(KeyEvent keyEvent) {
-            if (keyEvent.getKeyCode() == KeyEvent.VK_SPACE) {
-
-                if(!t.isRunning()) {
-                    isReady = false;
-                    t.start();
-                    spaceship.getGun().shoot(spaceship.getX());
-
-                }
-            }
-        }
-
-        @Override
-        public void keyReleased(KeyEvent keyEvent) {
-            if (keyEvent.getKeyCode() == KeyEvent.VK_SPACE) {
-                //pressed = false;
-                System.out.println("released");
-            }
-        }
-    }
-
-
-
-
-
 }
