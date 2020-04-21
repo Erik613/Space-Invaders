@@ -50,7 +50,18 @@ public class Screen extends JPanel implements ActionListener {
         spaceship.move();
         Bullet.move();
 
+            try {
+                for (Bullet b : Bullet.getBullets()) {
+                    for (Enemy e : Enemy.getEnemies()) {
+                        if (b.hit(e)) {
+                            b.destroy();
+                            e.destroy();
+                        }
+                    }
+                }
+            }catch (Exception ex) {
 
+            }
     }
 
     /* connects keys with movement on Screen */
@@ -70,21 +81,22 @@ public class Screen extends JPanel implements ActionListener {
         Graphics2D g2d = (Graphics2D) graphics;
 
         //draw spaceship
-        g2d.setColor(Config.SPACESHIP_COLOR);
-        g2d.drawRect(spaceship.getX(), spaceship.getY(), spaceship.getHeight(), spaceship.getWidth());
-
+        if(spaceship.isAlive()) {
+            g2d.setColor(Config.SPACESHIP_COLOR);
+            g2d.drawRect(spaceship.getX(), spaceship.getY(), spaceship.getWidth(), spaceship.getHeight());
+        }
         //draw bullets
         if(Bullet.getBullets() != null  && !Bullet.getBullets().isEmpty()) {
             g2d.setColor(Config.BULLET_COLOR);
             for (Bullet b : Bullet.getBullets()) {
-                g2d.drawRect(b.getX(), b.getY(), b.getHeigth(), b.getWidth());
+                g2d.drawRect(b.getX(), b.getY(), b.getWidth(), b.getHeight());
             }
         }
         //draw enemies
         g2d.setColor(Config.ENEMY_COLOR);
         //draw a rectangle for each enemy stored in Enemy
         for(Enemy e : Enemy.getEnemies()) {
-            g2d.drawRect(e.getX(), e.getY(), e.getHeight(), e.getWidth());
+            g2d.drawRect(e.getX(), e.getY(), e.getWidth(), e.getHeight());
         }
     }
 

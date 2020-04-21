@@ -13,6 +13,7 @@ public class Spaceship extends DrawableObject{
     private int width;
     private int height;
     private int moveSpeedX;
+    private boolean isAlive;
     //private int moveSpeedY;
     private Gun gun;
 
@@ -20,6 +21,7 @@ public class Spaceship extends DrawableObject{
     public Spaceship() {
         this.width = Config.SPACESHIP_WIDTH;
         this.height = Config.SPACESHIP_HEIGHT;
+        this.isAlive = true;
         try {
             this.setX(235);
             this.setY(400);
@@ -35,6 +37,8 @@ public class Spaceship extends DrawableObject{
     public int getWidth() {
         return width;
     }
+
+
 
     public int getHeight() {
         return height;
@@ -65,5 +69,14 @@ public class Spaceship extends DrawableObject{
     }
     public void resetMoveDirection() {
         moveSpeedX = 0;
+    }
+
+
+    public boolean isAlive() {
+        return isAlive;
+    }
+    @Override
+    public void destroy() {
+        this.isAlive = false;
     }
 }
