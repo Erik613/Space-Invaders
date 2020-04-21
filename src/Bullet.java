@@ -14,8 +14,8 @@ public class Bullet extends DrawableObject {
 
     public Bullet(int x){
         try {
-            setX(x);
-            setY(400);
+            setX(x + Config.SPACESHIP_WIDTH / 2);
+            setY(Config.SPACESHIP_POSITIONY);
         }catch (Exception ex) {
             System.out.println(ex);
         }
