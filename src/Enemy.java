@@ -49,7 +49,7 @@ public class Enemy extends DrawableObject {
             public void run() {
                 canShoot = true;
             }
-        }, 5000);
+        }, 1000);
     }
 
     @Override

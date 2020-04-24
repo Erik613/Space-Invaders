@@ -2,6 +2,8 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
+import java.util.Iterator;
 
 /*
  * class represents game display
@@ -46,6 +48,7 @@ public class Screen extends JPanel implements ActionListener {
         doKeyActions();
         spaceship.move();
         Bullet.move();
+        moveAliens();
         Enemy.randomShoot();
             try {
                 for (Bullet b : Bullet.getBullets()) {
@@ -113,5 +116,35 @@ public class Screen extends JPanel implements ActionListener {
     public void actionPerformed(ActionEvent actionEvent) {
         step();
 
+    }
+
+    public void moveAliens() {
+        ArrayList<Enemy> aliens = Enemy.getEnemies();
+        Iterator iAlien = aliens.iterator();
+        int speed = 1;
+        boolean moveToLeft = true;
+        boolean moveToRight = false;
+
+        // moves aliens right or left
+        while (iAlien.hasNext()) {
+            Enemy alien = (Enemy) iAlien.next();
+            //int x = alien.getX();
+            if(moveToLeft) {
+                try {
+                    alien.setX(alien.getX() - speed);
+                } catch (Exception ex) {
+                    moveToLeft = false;
+                    moveToRight = true;
+                }
+            }
+            else if (moveToRight) {
+                try {
+                    alien.setX(alien.getX() + speed);
+                } catch (Exception ex) {
+                    moveToLeft = true;
+                    moveToRight = false;
+                }
+            }
+        }
     }
 }
