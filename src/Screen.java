@@ -2,9 +2,6 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.KeyAdapter;
-import java.awt.event.KeyEvent;
-import java.util.ArrayList;
 
 /*
  * class represents game display
@@ -49,14 +46,17 @@ public class Screen extends JPanel implements ActionListener {
         doKeyActions();
         spaceship.move();
         Bullet.move();
-
+        Enemy.randomShoot();
             try {
                 for (Bullet b : Bullet.getBullets()) {
                     for (Enemy e : Enemy.getEnemies()) {
-                        if (b.hit(e)) {
+                        if (b.hit(e) && b.getType() == Bullet.BulletType.BULLET_SPACESHIP)  {
                             b.destroy();
                             e.destroy();
                         }
+                    }
+                    if(b.hit(spaceship) && b.getType() == Bullet.BulletType.BULLET_ENEMY) {
+                        spaceship.destroy();
                     }
                 }
             }catch (Exception ex) {
@@ -73,7 +73,7 @@ public class Screen extends JPanel implements ActionListener {
         else
             spaceship.resetMoveDirection();
         if(keyListener.getPressedKeys().contains(KeyPressedListener.SHOOT))
-            spaceship.getGun().shoot(spaceship.getX());
+            spaceship.getGun().shoot(spaceship.getX(), spaceship.getY());
     }
 
     /* draw game pieces on Screen */

@@ -1,3 +1,4 @@
+import java.lang.reflect.InvocationTargetException;
 import java.util.Timer;
 import java.util.TimerTask;
 /*
@@ -9,17 +10,20 @@ public class Gun {
     public final int COOLDOWN;
     private boolean isReady;
     private Timer timer;
+    private Bullet.BulletType type;
 
 
-    public Gun(final int COOLDOWN) {
+    public Gun(final int COOLDOWN, Bullet.BulletType type) {
         this.COOLDOWN = COOLDOWN;
         isReady = true;
         timer = new Timer();
+        this.type = type;
 
     }
-    public void shoot(int x) {
+    public void shoot(int x, int y) {
         if(isReady) {
-            new Bullet(x);
+            //BulletFactory.getBulletType(type, x, y);
+            Bullet.newBullet(type, x, y);
             isReady = false;
             timer.schedule(new TimerTask() {
                 @Override

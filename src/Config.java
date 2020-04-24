@@ -14,16 +14,16 @@ public interface Config {
     Color BACKGROUND = Color.BLACK;
 
     //settings for the players character
-    int SPACESHIP_WIDTH = 25;
-    int SPACESHIP_HEIGHT = 15;
+    int SPACESHIP_WIDTH = 50;
+    int SPACESHIP_HEIGHT = 30;
     Color SPACESHIP_COLOR = Color.BLUE;
     int SPACESHIP_GUN_COOLDOWN = 600;
     int SPACESHIP_POSITIONY = 590;
     int SPACESHIP_POSITIONX = 510;
 
     //settings for the enemies
-    int ENEMY_WIDTH = 25;
-    int ENEMY_HEIGHT = 15;
+    int ENEMY_WIDTH = 50;
+    int ENEMY_HEIGHT = 30;
     int ENEMY_SPEED = 20;
     Color ENEMY_COLOR = Color.RED;
     int ENEMY_GUN_COOLDOWN = 15000;
