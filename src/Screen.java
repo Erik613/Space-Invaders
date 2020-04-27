@@ -23,16 +23,16 @@ public class Screen extends JPanel implements ActionListener {
     }
 
     private void initScreen() {
+        //create player Icon & add KeyListener
+        spaceship = new Spaceship();
+        keyListener = new KeyPressedListener();
+        this.addKeyListener(keyListener);
+
         timer = new Timer(DELAY, this);
         timer.start();
         //set basic structure for game display
         setBackground(Config.BACKGROUND);
         setSize(dimensionX, dimensionY);
-
-        //create player Icon & add KeyListener
-        spaceship = new Spaceship();
-        keyListener = new KeyPressedListener();
-        this.addKeyListener(keyListener);
 
         System.out.println(getHeight() + " " + getWidth());
         this.setVisible(true);
@@ -59,6 +59,10 @@ public class Screen extends JPanel implements ActionListener {
                         spaceship.destroy();
                     }
                 }
+                if(Enemy.getEnemies().isEmpty()) {
+                    Game.setGameStatus(Game.GameStatus.WON);
+                }else if(!spaceship.isAlive())
+                    Game.setGameStatus(Game.GameStatus.LOST);
             }catch (Exception ex) {
 
             }
@@ -90,6 +94,7 @@ public class Screen extends JPanel implements ActionListener {
             g2d.setColor(Config.BULLET_COLOR);
             for (Bullet b : Bullet.getBullets()) {
                 g2d.drawRect(b.getX(), b.getY(), b.getWidth(), b.getHeight());
+
             }
         }
         //draw enemies
@@ -113,5 +118,12 @@ public class Screen extends JPanel implements ActionListener {
     public void actionPerformed(ActionEvent actionEvent) {
         step();
 
+    }
+
+    public void destroy() {
+        this.spaceship = null;
+        this.keyListener = null;
+        timer.stop();
+        timer = null;
     }
 }
