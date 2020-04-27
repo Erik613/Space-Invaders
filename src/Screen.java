@@ -1,7 +1,13 @@
+import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
+import java.io.File;
+import java.io.IOException;
+import java.util.ArrayList;
 
 /*
  * class represents game display
@@ -16,23 +22,32 @@ public class Screen extends JPanel implements ActionListener {
     public static int dimensionX = Config.BOARD_WIDTH;
     public static int dimensionY = Config.BOARD_HEIGHT;
     private KeyPressedListener keyListener;
+    private Image backgroundImage;
 
 
-    public Screen() {
-        initScreen();
+    public Screen(String fileName) throws IOException{
+        initScreen(fileName);       //brauchen wir initScreen, kann man das nicht einfach durch den Body von
+                            //initScreen ersetzen? Oder hat das einen aesthetischen Grund?
     }
 
-    private void initScreen() {
-        timer = new Timer(DELAY, this);
-        timer.start();
-        //set basic structure for game display
-        setBackground(Config.BACKGROUND);
-        setSize(dimensionX, dimensionY);
-
+    private void initScreen(String fileName)  {
         //create player Icon & add KeyListener
         spaceship = new Spaceship();
         keyListener = new KeyPressedListener();
         this.addKeyListener(keyListener);
+        timer = new Timer(DELAY, this);
+        timer.start();
+        //set basic structure for game display
+        setBackground(Config.BACKGROUND);
+        try {
+            backgroundImage = ImageIO.read(new File(fileName));
+        }catch (Exception ex){
+            System.out.println(ex);
+        }
+        setSize(dimensionX, dimensionY);
+
+
+
 
         System.out.println(getHeight() + " " + getWidth());
         this.setVisible(true);
@@ -103,7 +118,7 @@ public class Screen extends JPanel implements ActionListener {
     @Override
     protected void paintComponent(Graphics graphics) {
         super.paintComponent(graphics);
-
+        graphics.drawImage(backgroundImage, 0, 0, null);
         draw(graphics);
 
         Toolkit.getDefaultToolkit().sync();

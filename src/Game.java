@@ -1,12 +1,14 @@
 import javax.swing.*;
+import java.io.IOException;
+
 /* game object */
 public class Game implements Runnable {
     private JFrame frame;
     private Screen screen;  //display for the game
 
 
-    public Game(){
-        screen = new Screen();
+    public Game() throws IOException {
+        screen = new Screen("C:\\xampp\\htdocs\\ZFC\\zugferd_rechnungserstellung\\logo\\Test456.jpg");
 
         frame = new JFrame();
         frame.setSize(Config.BOARD_WIDTH, Config.BOARD_HEIGHT);
