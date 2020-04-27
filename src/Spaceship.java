@@ -1,6 +1,8 @@
+import javax.imageio.ImageIO;
 import java.awt.*;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
+import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -22,7 +24,9 @@ public class Spaceship extends DrawableObject{
         this.width = Config.SPACESHIP_WIDTH;
         this.height = Config.SPACESHIP_HEIGHT;
         this.isAlive = true;
+
         try {
+            super.icon= ImageIO.read(new File(Config.SPACESHIP_ICON));
             this.setX(Config.SPACESHIP_POSITIONX);
             this.setY(Config.SPACESHIP_POSITIONY);
         }catch (Exception ex) {
@@ -43,6 +47,7 @@ public class Spaceship extends DrawableObject{
     public int getHeight() {
         return height;
     }
+
 
 
 

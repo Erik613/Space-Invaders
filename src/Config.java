@@ -21,6 +21,7 @@ public interface Config {
     int SPACESHIP_GUN_COOLDOWN = 600;
     int SPACESHIP_POSITIONY = 590;
     int SPACESHIP_POSITIONX = 510;
+    String SPACESHIP_ICON = "src\\img\\craft.png";
 
     //settings for the enemies
     int ENEMY_WIDTH = 50;

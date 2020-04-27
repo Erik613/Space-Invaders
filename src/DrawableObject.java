@@ -1,8 +1,11 @@
+import java.awt.*;
+
 public abstract class DrawableObject {
     private int x;
     private int y;
     private int height;
     private int width;
+    protected Image icon;
 
 
 
@@ -16,6 +19,8 @@ public abstract class DrawableObject {
         }
 
     }
+
+    public Image getImage(){ return icon; }
 
     public int getX() {
         return this.x;

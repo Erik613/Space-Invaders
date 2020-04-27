@@ -23,6 +23,7 @@ public class Screen extends JPanel implements ActionListener {
     public static int dimensionY = Config.BOARD_HEIGHT;
     private KeyPressedListener keyListener;
     private Image backgroundImage;
+    //private  Image shipIMG = ImageIO.read(new File("src\\img\\craft.png"));
 
 
     public Screen(String fileName) throws IOException{
@@ -41,6 +42,7 @@ public class Screen extends JPanel implements ActionListener {
         setBackground(Config.BACKGROUND);
         try {
             backgroundImage = ImageIO.read(new File(fileName));
+
         }catch (Exception ex){
             System.out.println(ex);
         }
@@ -98,7 +100,7 @@ public class Screen extends JPanel implements ActionListener {
         //draw spaceship
         if(spaceship.isAlive()) {
             g2d.setColor(Config.SPACESHIP_COLOR);
-            g2d.drawRect(spaceship.getX(), spaceship.getY(), spaceship.getWidth(), spaceship.getHeight());
+            g2d.drawImage( spaceship.getImage() ,spaceship.getX(), spaceship.getY(), null);
         }
         //draw bullets
         if(Bullet.getBullets() != null  && !Bullet.getBullets().isEmpty()) {
