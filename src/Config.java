@@ -12,6 +12,7 @@ public interface Config {
     int BOARD_BORDER_LEFT = 25;
     int BOARD_BORDER_RIGHT = 25;
     Color BACKGROUND = Color.BLACK;
+    String BACKGROUND_IMAGE = "src\\img\\Space.jpg";
 
     //settings for the players character
     int SPACESHIP_WIDTH = 50;

@@ -8,7 +8,7 @@ public class Game implements Runnable {
 
 
     public Game() throws IOException {
-        screen = new Screen("C:\\xampp\\htdocs\\ZFC\\zugferd_rechnungserstellung\\logo\\Test456.jpg");
+        screen = new Screen(Config.BACKGROUND_IMAGE);
 
         frame = new JFrame();
         frame.setSize(Config.BOARD_WIDTH, Config.BOARD_HEIGHT);
