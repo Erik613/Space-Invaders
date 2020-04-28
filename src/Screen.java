@@ -43,6 +43,7 @@ public class Screen extends JPanel implements ActionListener {
         doKeyActions();
         spaceship.move();
         Bullet.move();
+        moveAliens();
         Enemy.randomShoot();
             try {
                 for (Bullet b : Bullet.getBullets()) {
@@ -51,6 +52,8 @@ public class Screen extends JPanel implements ActionListener {
                             b.destroy();
                             e.destroy();
                         }
+                        if(e.hit(spaceship))
+                            spaceship.destroy();
                     }
                     if(b.hit(spaceship) && b.getType() == Bullet.BulletType.BULLET_ENEMY) {
                         spaceship.destroy();
@@ -61,7 +64,7 @@ public class Screen extends JPanel implements ActionListener {
                 }else if(!spaceship.isAlive())
                     Game.setGameStatus(Game.GameStatus.LOST);
             }catch (Exception ex) {
-
+                System.out.println(ex);
             }
     }
 
@@ -91,7 +94,6 @@ public class Screen extends JPanel implements ActionListener {
             g2d.setColor(Config.BULLET_COLOR);
             for (Bullet b : Bullet.getBullets()) {
                 g2d.drawRect(b.getX(), b.getY(), b.getWidth(), b.getHeight());
-
             }
         }
         //draw enemies
@@ -127,5 +129,37 @@ public class Screen extends JPanel implements ActionListener {
     public void start() {
         if(!timer.isRunning())
             timer.start();
+    }
+
+    public void moveAliens() {
+        boolean hitBorder = false;
+        int index = 0;
+        for(Enemy e : Enemy.getEnemies()) {
+            try {
+                e.setX(e.getX() + (Enemy.isMoveRight() ? Config.ENEMY_SPEED : ((Config.ENEMY_SPEED) * -1)));
+            } catch (Exception ex) {
+                hitBorder = true;
+                index = Enemy.getEnemies().indexOf(e);
+                break;
+            }
+        }
+        if(hitBorder){
+            for(int i = index; i >= 0; i--){
+                Enemy e = Enemy.getEnemies().get(i);
+                try {
+                    e.setX(e.getX() + (Enemy.isMoveRight() ? Config.ENEMY_SPEED : ((Config.ENEMY_SPEED) * -1)));
+                } catch (Exception ex) {
+                    System.out.println("unerwarteter Fehler beim Rückgängig machen der Enemiebewegung");
+                    break;
+                }
+            }
+            for (Enemy e : Enemy.getEnemies()) {
+                try {
+                    e.setY(e.getY() + 10);
+                } catch (Exception ex) {
+                    spaceship.destroy();
+                }
+            }
+        }
     }
 }
