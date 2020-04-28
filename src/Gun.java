@@ -22,7 +22,6 @@ public class Gun {
     }
     public void shoot(int x, int y) {
         if(isReady) {
-            //BulletFactory.getBulletType(type, x, y);
             Bullet.newBullet(type, x, y);
             isReady = false;
             timer.schedule(new TimerTask() {

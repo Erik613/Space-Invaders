@@ -29,7 +29,7 @@ public abstract class Bullet extends DrawableObject {
     private Bullet(BulletType type, int x, int y){
         super();
         try {
-            setX(x + Config.SPACESHIP_WIDTH / 2);
+            setX(x + Config.BULLET_POSITION_CORRECTION);
             setY(y);
         }catch (Exception ex) {
             System.out.println(ex);

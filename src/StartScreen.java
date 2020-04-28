@@ -12,6 +12,7 @@ public class StartScreen extends JPanel {
         content.setBackground(Color.BLACK);
         startButton = new Button("Start");
         startButton.setForeground(Color.YELLOW);
+        startButton.setBackground(Color.BLACK);
         startButton.setVisible(true);
         startButton.addActionListener(e -> started = true);
         content.add(new JLabel());

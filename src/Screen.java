@@ -32,7 +32,6 @@ public class Screen extends JPanel implements ActionListener {
         timer = new Timer(DELAY, this);
 
         //set basic structure for game display
-        setBackground(Config.BACKGROUND);
         setSize(dimensionX, dimensionY);
         backgroundImg = new ImageIcon("ressources/img/background.png").getImage();
 
@@ -102,7 +101,6 @@ public class Screen extends JPanel implements ActionListener {
             }
         }
         //draw enemies
-        g2d.setColor(Config.ENEMY_COLOR);
         //draw a rectangle for each enemy stored in Enemy
         for(Enemy e : Enemy.getEnemies()) {
             g2d.drawImage(e.getImg(), e.getX(), e.getY(), null);
@@ -137,27 +135,23 @@ public class Screen extends JPanel implements ActionListener {
     }
 
     public void moveAliens() {
-        boolean hitBorder = false;
-        int index = 0;
-        for(Enemy e : Enemy.getEnemies()) {
+        boolean moveY = false;
+        int index = Enemy.getEnemies().size();
+
+        //Move Enemies and make revert moves if an enemy touch the Edge.
+        for(int i = 0; i < index; i++) {
+            Enemy e = Enemy.getEnemies().get(i);
             try {
                 e.setX(e.getX() + (Enemy.isMoveRight() ? Config.ENEMY_SPEED : ((Config.ENEMY_SPEED) * -1)));
             } catch (Exception ex) {
-                hitBorder = true;
+                moveY = true;
                 index = Enemy.getEnemies().indexOf(e);
-                break;
+                i = 0;
             }
         }
-        if(hitBorder){
-            for(int i = index; i >= 0; i--){
-                Enemy e = Enemy.getEnemies().get(i);
-                try {
-                    e.setX(e.getX() + (Enemy.isMoveRight() ? Config.ENEMY_SPEED : ((Config.ENEMY_SPEED) * -1)));
-                } catch (Exception ex) {
-                    System.out.println("unerwarteter Fehler beim Rückgängig machen der Enemiebewegung");
-                    break;
-                }
-            }
+        //Move on Y-axis if an enemy touched the Edge
+        //Exception get thrown if an enemy touches the edge of the y-axis -> Player lost -> spaceship.destroy
+        if(moveY) {
             for (Enemy e : Enemy.getEnemies()) {
                 try {
                     e.setY(e.getY() + 10);

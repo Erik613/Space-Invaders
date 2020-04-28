@@ -90,8 +90,4 @@ public class Game implements Runnable {
     public static void setGameStatus(GameStatus gameStatus) {
         Game.gameStatus = gameStatus;
     }
-
-    public static GameStatus getGameStatus() {
-        return gameStatus;
-    }
 }
