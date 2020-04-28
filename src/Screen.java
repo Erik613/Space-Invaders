@@ -35,7 +35,6 @@ public class Screen extends JPanel implements ActionListener {
         setSize(dimensionX, dimensionY);
         backgroundImg = new ImageIcon("ressources/img/background.png").getImage();
 
-        System.out.println(getHeight() + " " + getWidth());
         setFocusable(true);
 
     }
@@ -93,8 +92,6 @@ public class Screen extends JPanel implements ActionListener {
 
         //draw spaceship
         if(spaceship.isAlive()) {
-            //g2d.setColor(Config.SPACESHIP_COLOR);
-            //g2d.drawRect(spaceship.getX(), spaceship.getY(), spaceship.getWidth(), spaceship.getHeight());
             g2d.drawImage(spaceship.getImg(), spaceship.getX(), spaceship.getY(), null);
         }
         //draw bullets

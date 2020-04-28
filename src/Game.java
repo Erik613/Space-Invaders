@@ -40,7 +40,6 @@ public class Game implements Runnable {
         while (true) {
             try {
                 if(gameStatus == GameStatus.NOT_STARTED && startScreen.getStarted()) {
-                    System.out.println("started");
                     startScreen.setVisible(false);
                     screen.setVisible(true);
                     frame.add(screen);
@@ -51,7 +50,6 @@ public class Game implements Runnable {
                     screen.grabFocus();
                     setGameStatus(GameStatus.RUNNING);
                 } else if (gameStatus == GameStatus.WON || gameStatus == GameStatus.LOST) {
-                    System.out.println("end");
                     endScreen.setEndText(gameStatus == GameStatus.WON);
                     screen.setVisible(false);
                     endScreen.setVisible(true);

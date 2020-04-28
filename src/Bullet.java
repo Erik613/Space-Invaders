@@ -47,7 +47,7 @@ public abstract class Bullet extends DrawableObject {
                 }
             }
         }catch (ConcurrentModificationException ex) {
-            System.out.println(bullets.size());
+            System.out.println(ex);
         }
     }
 
