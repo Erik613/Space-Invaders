@@ -10,11 +10,8 @@ import java.util.List;
 public class Spaceship extends DrawableObject{
     /* spaceship attributes */
     private int speed;
-    private int width;
-    private int height;
     private int moveSpeedX;
     private boolean isAlive;
-    //private int moveSpeedY;
     private Gun gun;
 
 
@@ -32,18 +29,6 @@ public class Spaceship extends DrawableObject{
         //get new Gun Object for spaceship
         gun = new Gun(Config.SPACESHIP_GUN_COOLDOWN, Bullet.BulletType.BULLET_SPACESHIP);
     }
-
-    public int getWidth() {
-        return width;
-    }
-
-
-
-    public int getHeight() {
-        return height;
-    }
-
-
 
 
 

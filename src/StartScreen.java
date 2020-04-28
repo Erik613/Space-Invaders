@@ -20,7 +20,6 @@ public class StartScreen extends JPanel {
         content.add(new JLabel());
 
         add(content, BorderLayout.CENTER);
-
     }
 
     public boolean getStarted() {

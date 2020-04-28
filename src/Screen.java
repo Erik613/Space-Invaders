@@ -46,27 +46,31 @@ public class Screen extends JPanel implements ActionListener {
         Bullet.move();
         moveAliens();
         Enemy.randomShoot();
-            try {
-                for (Bullet b : Bullet.getBullets()) {
-                    for (Enemy e : Enemy.getEnemies()) {
-                        if (b.hit(e) && b.getType() == Bullet.BulletType.BULLET_SPACESHIP)  {
-                            b.destroy();
-                            e.destroy();
-                        }
-                        if(e.hit(spaceship))
-                            spaceship.destroy();
+        hitDetection();
+    }
+
+    private void hitDetection() {
+        try {
+            for (Bullet b : Bullet.getBullets()) {
+                for (Enemy e : Enemy.getEnemies()) {
+                    if (b.hit(e) && b.getType() == Bullet.BulletType.BULLET_SPACESHIP)  {
+                        b.destroy();
+                        e.destroy();
                     }
-                    if(b.hit(spaceship) && b.getType() == Bullet.BulletType.BULLET_ENEMY) {
+                    if(e.hit(spaceship))
                         spaceship.destroy();
-                    }
                 }
-                if(Enemy.getEnemies().isEmpty()) {
-                    Game.setGameStatus(Game.GameStatus.WON);
-                }else if(!spaceship.isAlive())
-                    Game.setGameStatus(Game.GameStatus.LOST);
-            }catch (Exception ex) {
-                System.out.println(ex);
+                if(b.hit(spaceship) && b.getType() == Bullet.BulletType.BULLET_ENEMY) {
+                    spaceship.destroy();
+                }
             }
+            if(Enemy.getEnemies().isEmpty()) {
+                Game.setGameStatus(Game.GameStatus.WON);
+            }else if(!spaceship.isAlive())
+                Game.setGameStatus(Game.GameStatus.LOST);
+        }catch (Exception ex) {
+            System.out.println(ex);
+        }
     }
 
     /* connects keys with movement on Screen */
@@ -97,7 +101,7 @@ public class Screen extends JPanel implements ActionListener {
         if(Bullet.getBullets() != null  && !Bullet.getBullets().isEmpty()) {
             g2d.setColor(Config.BULLET_COLOR);
             for (Bullet b : Bullet.getBullets()) {
-                g2d.drawRect(b.getX(), b.getY(), b.getWidth(), b.getHeight());
+                g2d.fillRect(b.getX(), b.getY(), b.getWidth(), b.getHeight());
             }
         }
         //draw enemies
