@@ -1,11 +1,21 @@
+import javax.swing.*;
+import java.awt.*;
+
 public abstract class DrawableObject {
     private int x;
     private int y;
     private int height;
     private int width;
+    protected Image img;
 
+    protected DrawableObject(String imgPath, String imgDesc) {
+        img = new ImageIcon(imgPath, imgDesc).getImage();
+        this.height = img.getHeight(null);
+        this.width = img.getWidth(null);
+    }
+    protected DrawableObject(){
 
-
+    }
 
     public void setX(int x) throws Exception{
         if(x > 0 && x < Screen.dimensionX - 50) {
@@ -45,6 +55,10 @@ public abstract class DrawableObject {
 
     public void setWidth(int width) {
         this.width = width;
+    }
+
+    public Image getImg() {
+        return img;
     }
 
     public boolean hit (DrawableObject r) {

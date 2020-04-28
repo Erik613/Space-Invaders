@@ -19,6 +19,7 @@ public class Spaceship extends DrawableObject{
 
 
     public Spaceship() {
+        super("ressources/img/baseshipa.png", "Spaceship");
         this.width = Config.SPACESHIP_WIDTH;
         this.height = Config.SPACESHIP_HEIGHT;
         this.isAlive = true;

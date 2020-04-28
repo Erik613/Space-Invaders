@@ -12,6 +12,7 @@ public class Enemy extends DrawableObject {
 
 
     private Enemy () {
+        super("ressources/img/alien.png", "alien");
         //gun = new Gun(15000, BulletFactory.BulletType.BULLET_ENEMY);
         setHeight(Config.ENEMY_HEIGHT);
         setWidth(Config.ENEMY_WIDTH);

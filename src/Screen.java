@@ -16,6 +16,7 @@ public class Screen extends JPanel implements ActionListener {
     public static int dimensionX = Config.BOARD_WIDTH;
     public static int dimensionY = Config.BOARD_HEIGHT;
     private KeyPressedListener keyListener;
+    private Image backgroundImg;
 
 
     public Screen() {
@@ -33,6 +34,7 @@ public class Screen extends JPanel implements ActionListener {
         //set basic structure for game display
         setBackground(Config.BACKGROUND);
         setSize(dimensionX, dimensionY);
+        backgroundImg = new ImageIcon("ressources/img/background.png").getImage();
 
         System.out.println(getHeight() + " " + getWidth());
         setFocusable(true);
@@ -84,10 +86,13 @@ public class Screen extends JPanel implements ActionListener {
     private void draw(Graphics graphics) {
         Graphics2D g2d = (Graphics2D) graphics;
 
+        g2d.drawImage(backgroundImg, 0, 0, null);
+
         //draw spaceship
         if(spaceship.isAlive()) {
-            g2d.setColor(Config.SPACESHIP_COLOR);
-            g2d.drawRect(spaceship.getX(), spaceship.getY(), spaceship.getWidth(), spaceship.getHeight());
+            //g2d.setColor(Config.SPACESHIP_COLOR);
+            //g2d.drawRect(spaceship.getX(), spaceship.getY(), spaceship.getWidth(), spaceship.getHeight());
+            g2d.drawImage(spaceship.getImg(), spaceship.getX(), spaceship.getY(), null);
         }
         //draw bullets
         if(Bullet.getBullets() != null  && !Bullet.getBullets().isEmpty()) {
@@ -100,7 +105,7 @@ public class Screen extends JPanel implements ActionListener {
         g2d.setColor(Config.ENEMY_COLOR);
         //draw a rectangle for each enemy stored in Enemy
         for(Enemy e : Enemy.getEnemies()) {
-            g2d.drawRect(e.getX(), e.getY(), e.getWidth(), e.getHeight());
+            g2d.drawImage(e.getImg(), e.getX(), e.getY(), null);
         }
     }
 

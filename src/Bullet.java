@@ -27,6 +27,7 @@ public abstract class Bullet extends DrawableObject {
     }
 
     private Bullet(BulletType type, int x, int y){
+        super();
         try {
             setX(x + Config.SPACESHIP_WIDTH / 2);
             setY(y);
