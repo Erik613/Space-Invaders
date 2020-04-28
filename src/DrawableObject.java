@@ -22,7 +22,7 @@ public abstract class DrawableObject {
     }
 
     public void setY(int y) throws Exception{
-        if(y > 0 && y < Screen.dimensionY - 100) {
+        if(y > 0 && y < Screen.dimensionY - 50) {
             this.y = y;
         } else
             throw new Exception("Object außerhalb des Bildes");

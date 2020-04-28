@@ -7,8 +7,8 @@ public class Enemy extends DrawableObject {
 
     private Gun gun;
     private static boolean canShoot = true;
-    private static ArrayList<Enemy> enemies;
     private static boolean moveRight = true;
+    private static ArrayList<Enemy> enemies;
 
 
     private Enemy () {
@@ -51,6 +51,10 @@ public class Enemy extends DrawableObject {
                 canShoot = true;
             }
         }, 1000);
+    }
+
+    public static void reset() {
+        enemies = null;
     }
 
     @Override

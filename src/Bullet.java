@@ -61,6 +61,10 @@ public abstract class Bullet extends DrawableObject {
         bullets.remove(this);
     }
 
+    public static void reset() {
+        bullets = new ArrayList<>();
+    }
+
     private static class BulletFactory {
 
         public Bullet getBulletType(BulletType type, int x, int y) {

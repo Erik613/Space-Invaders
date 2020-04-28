@@ -69,8 +69,14 @@ public class Game implements Runnable {
                 e.printStackTrace();
                 System.exit(1);
             }
-
         }
+        resetGame();
+
+    }
+
+    private void resetGame() {
+        Enemy.reset();
+        Bullet.reset();
         startScreen = new StartScreen();
         screen = new Screen();
         setGameStatus(GameStatus.NOT_STARTED);
@@ -79,10 +85,13 @@ public class Game implements Runnable {
         startScreen.setVisible(true);
         frame.pack();
         this.run();
-
     }
 
     public static void setGameStatus(GameStatus gameStatus) {
         Game.gameStatus = gameStatus;
+    }
+
+    public static GameStatus getGameStatus() {
+        return gameStatus;
     }
 }
