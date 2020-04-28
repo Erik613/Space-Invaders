@@ -8,7 +8,7 @@ public abstract class DrawableObject {
 
 
     public void setX(int x) throws Exception{
-        if(x > 0 && x < Screen.dimensionX - 20) {
+        if(x > 0 && x < Screen.dimensionX - 50) {
             this.x = x;
         }
         else {
@@ -22,7 +22,7 @@ public abstract class DrawableObject {
     }
 
     public void setY(int y) throws Exception{
-        if(y > 0 && y < Screen.dimensionX) {
+        if(y > 0 && y < Screen.dimensionY - 100) {
             this.y = y;
         } else
             throw new Exception("Object außerhalb des Bildes");

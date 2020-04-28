@@ -57,13 +57,15 @@ public class Screen extends JPanel implements ActionListener {
                             b.destroy();
                             e.destroy();
                         }
+                        if(e.hit(spaceship))
+                            spaceship.destroy();
                     }
                     if(b.hit(spaceship) && b.getType() == Bullet.BulletType.BULLET_ENEMY) {
                         spaceship.destroy();
                     }
                 }
             }catch (Exception ex) {
-
+                System.out.println(ex);
             }
     }
 
@@ -119,30 +121,32 @@ public class Screen extends JPanel implements ActionListener {
     }
 
     public void moveAliens() {
-        ArrayList<Enemy> aliens = Enemy.getEnemies();
-        Iterator iAlien = aliens.iterator();
-        int speed = 1;
-        boolean moveToLeft = true;
-        boolean moveToRight = false;
-
-        // moves aliens right or left
-        while (iAlien.hasNext()) {
-            Enemy alien = (Enemy) iAlien.next();
-            //int x = alien.getX();
-            if(moveToLeft) {
+        boolean hitBorder = false;
+        int index = 0;
+        for(Enemy e : Enemy.getEnemies()) {
+            try {
+                e.setX(e.getX() + (Enemy.isMoveRight() ? Config.ENEMY_SPEED : ((Config.ENEMY_SPEED) * -1)));
+            } catch (Exception ex) {
+                hitBorder = true;
+                index = Enemy.getEnemies().indexOf(e);
+                break;
+            }
+        }
+        if(hitBorder){
+            for(int i = index; i >= 0; i--){
+                Enemy e = Enemy.getEnemies().get(i);
                 try {
-                    alien.setX(alien.getX() - speed);
+                    e.setX(e.getX() + (Enemy.isMoveRight() ? Config.ENEMY_SPEED : ((Config.ENEMY_SPEED) * -1)));
                 } catch (Exception ex) {
-                    moveToLeft = false;
-                    moveToRight = true;
+                    System.out.println("unerwarteter Fehler beim Rückgängig machen der Enemiebewegung");
+                    break;
                 }
             }
-            else if (moveToRight) {
+            for (Enemy e : Enemy.getEnemies()) {
                 try {
-                    alien.setX(alien.getX() + speed);
+                    e.setY(e.getY() + 10);
                 } catch (Exception ex) {
-                    moveToLeft = true;
-                    moveToRight = false;
+                    spaceship.destroy();
                 }
             }
         }

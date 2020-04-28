@@ -24,7 +24,7 @@ public interface Config {
     //settings for the enemies
     int ENEMY_WIDTH = 50;
     int ENEMY_HEIGHT = 30;
-    int ENEMY_SPEED = 20;
+    int ENEMY_SPEED = 1;
     Color ENEMY_COLOR = Color.RED;
     int ENEMY_GUN_COOLDOWN = 0;
     int ENEMY_ENCOUNTERS = 15;

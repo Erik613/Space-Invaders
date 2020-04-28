@@ -8,6 +8,7 @@ public class Enemy extends DrawableObject {
     private Gun gun;
     private static boolean canShoot = true;
     private static ArrayList<Enemy> enemies;
+    private static boolean moveRight = true;
 
 
     private Enemy () {
@@ -55,5 +56,20 @@ public class Enemy extends DrawableObject {
     @Override
     public void destroy() {
         enemies.remove(this);
+    }
+
+    public static boolean isMoveRight() {
+        return moveRight;
+    }
+
+    @Override
+    public void setX(int x) throws Exception {
+        try {
+            super.setX(x);
+        }catch (Exception e) {
+            Enemy.moveRight = !moveRight;
+            throw new Exception(e);
+        }
+
     }
 }
