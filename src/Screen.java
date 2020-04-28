@@ -23,21 +23,18 @@ public class Screen extends JPanel implements ActionListener {
     }
 
     private void initScreen() {
+
         //create player Icon & add KeyListener
         spaceship = new Spaceship();
         keyListener = new KeyPressedListener();
         this.addKeyListener(keyListener);
-
         timer = new Timer(DELAY, this);
-        timer.start();
+
         //set basic structure for game display
         setBackground(Config.BACKGROUND);
         setSize(dimensionX, dimensionY);
 
         System.out.println(getHeight() + " " + getWidth());
-        this.setVisible(true);
-
-        //addKeyListener(new ShootAdapter(spaceship.getGun().COOLDOWN));
         setFocusable(true);
 
     }
@@ -125,5 +122,10 @@ public class Screen extends JPanel implements ActionListener {
         this.keyListener = null;
         timer.stop();
         timer = null;
+    }
+
+    public void start() {
+        if(!timer.isRunning())
+            timer.start();
     }
 }

@@ -18,13 +18,20 @@ public class Game implements Runnable {
     public Game(){
         gameStatus = GameStatus.NOT_STARTED;
         startScreen = new StartScreen();
-        frame = new JFrame();
+        screen = new Screen();
+        endScreen = new EndScreen();
+        frame = new JFrame() {
+            @Override
+            public void pack() {
+                super.pack();
+                this.setSize(Config.BOARD_WIDTH, Config.BOARD_HEIGHT);
+            }
+        };
         frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-        frame.setSize(Config.BOARD_WIDTH, Config.BOARD_HEIGHT);
         frame.setVisible(true);
         frame.setResizable(false);
         frame.add(startScreen);
-
+        frame.pack();
 
     }
 
@@ -32,37 +39,46 @@ public class Game implements Runnable {
     public void run() {
         while (true) {
             try {
-                if(screen == null && startScreen.getStarted()) {
-                    screen = new Screen();
+                if(gameStatus == GameStatus.NOT_STARTED && startScreen.getStarted()) {
+                    System.out.println("started");
                     startScreen.setVisible(false);
-                    frame.remove(startScreen);
+                    screen.setVisible(true);
                     frame.add(screen);
+                    frame.remove(startScreen);
+                    frame.pack();
+                    Thread.sleep(1000);
+                    screen.start();
                     screen.grabFocus();
+                    setGameStatus(GameStatus.RUNNING);
                 } else if (gameStatus == GameStatus.WON || gameStatus == GameStatus.LOST) {
-                    endScreen = new EndScreen(gameStatus == GameStatus.WON);
+                    System.out.println("end");
+                    endScreen.setEndText(gameStatus == GameStatus.WON);
+                    screen.setVisible(false);
                     endScreen.setVisible(true);
-                    frame.remove(screen);
                     frame.add(endScreen);
+                    frame.remove(screen);
+                    frame.pack();
                     screen.destroy();
                     endScreen.grabFocus();
+                    Thread.sleep(2000);
                     break;
                 }
-                //Thread.sleep(10);
+                Thread.sleep(10);
                 this.frame.repaint();
             } catch (Exception e) {
                 e.printStackTrace();
                 System.exit(1);
             }
-        }
 
-        while (true) {
-            try {
-                this.frame.repaint();
-                Thread.sleep(100);
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
         }
+        startScreen = new StartScreen();
+        screen = new Screen();
+        setGameStatus(GameStatus.NOT_STARTED);
+        frame.add(startScreen);
+        frame.remove(endScreen);
+        startScreen.setVisible(true);
+        frame.pack();
+        this.run();
 
     }
 
