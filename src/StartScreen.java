@@ -6,31 +6,30 @@ import java.io.File;
 import java.io.IOException;
 
 public class StartScreen extends JPanel {
-    private Button startButton;
-    private boolean started =false;
+    private JButton startButton;
+    private boolean started = false;
 
     public StartScreen() {
-
-        super(new BorderLayout(5, 5));
+        super(new BorderLayout(300, 300));
         this.setBackground(Color.BLACK);
         JPanel content = new JPanel(new GridLayout(3, 1));
         content.setBackground(Color.BLACK);
-        JLabel jl=new JLabel();
-        try {
-            jl.setIcon(new javax.swing.ImageIcon("ressources/img/logo.jpg"));
-            jl.setHorizontalAlignment(JLabel.CENTER);
-        }catch (Exception ex){
-            System.out.println(ex);
-        }
 
-        startButton = new Button("Start");
-        startButton.setFont(new Font("Arial", Font.PLAIN, 40));
-        startButton.setForeground(Color.YELLOW);
+        startButton = new JButton();
+        JLabel jl = new JLabel();
+
+        ImageIcon startButtonIcon = new ImageIcon("ressources/img/start_button.png", "startbutton");
+        ImageIcon logoIcon = new ImageIcon("ressources/img/logo.jpg", "logo");
+        startButton.setIcon(startButtonIcon);
+        jl.setIcon(logoIcon);
+        jl.setHorizontalAlignment(JLabel.CENTER);
+
         startButton.setBackground(Color.BLACK);
         startButton.setVisible(true);
+        startButton.setFocusPainted(false);
+        startButton.setBorderPainted(false);
         startButton.addActionListener(e -> started = true);
 
-        //content.add(new JLabel());
         content.add(jl);
         content.add(startButton);
         content.add(new JLabel());
