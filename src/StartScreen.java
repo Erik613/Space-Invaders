@@ -5,10 +5,16 @@ import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 
+/**
+ * class represents the Start Screen of the Game
+ */
 public class StartScreen extends JPanel {
     private JButton startButton;
     private boolean started = false;
 
+    /**
+     * the actual Start Screen
+     */
     public StartScreen() {
         super(new BorderLayout(300, 300));
         this.setBackground(Color.BLACK);
@@ -37,6 +43,10 @@ public class StartScreen extends JPanel {
         add(content, BorderLayout.CENTER);
     }
 
+    /**
+     * if the Game Starts
+     * @return Start
+     */
     public boolean getStarted() {
         return started;
     }
