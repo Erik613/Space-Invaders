@@ -1,5 +1,5 @@
 import javax.swing.*;
-/*
+/**
  * Main class that starts the game
  */
 public class Main {
