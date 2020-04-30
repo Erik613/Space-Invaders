@@ -4,7 +4,7 @@ import java.awt.event.KeyEvent;
 import java.util.ArrayList;
 import java.util.List;
 
-/*
+/**
  * class represents player character
  */
 public class Spaceship extends DrawableObject{
@@ -15,6 +15,9 @@ public class Spaceship extends DrawableObject{
     private Gun gun;
 
 
+    /**
+     * the Spaceship of the player
+     */
     public Spaceship() {
         super("ressources/img/baseshipa.png", "Spaceship");
         this.isAlive = true;
@@ -31,7 +34,9 @@ public class Spaceship extends DrawableObject{
     }
 
 
-
+    /**
+     * move for the player
+     */
     public void move() {
         if(getX() >= 0 && getX()<= Config.BOARD_WIDTH)
             try {
@@ -41,24 +46,45 @@ public class Spaceship extends DrawableObject{
             }
     }
 
+    /**
+     * getter for Gun
+     * @return Gun
+     */
     public Gun getGun() {
         return gun;
     }
 
+    /**
+     * set the move direction to left
+     */
     public void setMoveDirectionLeft() {
         moveSpeedX = speed * (-1);
     }
+
+    /**
+     * set the move direction to right
+     */
     public void setMoveDirectionRight() {
         moveSpeedX = speed;
     }
+
+    /**
+     * reset the move direction
+     */
     public void resetMoveDirection() {
         moveSpeedX = 0;
     }
 
-
+    /**
+     * @return
+     */
     public boolean isAlive() {
         return isAlive;
     }
+
+    /**
+     *
+     */
     @Override
     public void destroy() {
         this.isAlive = false;
