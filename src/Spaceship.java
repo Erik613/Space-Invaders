@@ -16,7 +16,7 @@ public class Spaceship extends DrawableObject{
 
 
     public Spaceship() {
-        super("ressources/img/baseshipa.png", "Spaceship");
+        super(Config.SPACESHIP_ICON, "Spaceship");
         this.isAlive = true;
         try {
             this.setX(Config.SPACESHIP_POSITIONX);

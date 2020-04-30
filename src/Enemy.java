@@ -12,7 +12,7 @@ public class Enemy extends DrawableObject {
 
 
     private Enemy () {
-        super("ressources/img/alien.png", "alien");
+        super(Config.ENEMY_ICON, "alien");
         gun = new Gun(Config.ENEMY_GUN_COOLDOWN, Bullet.BulletType.BULLET_ENEMY);
         enemies.add(this);
     }
