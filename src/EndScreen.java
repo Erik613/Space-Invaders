@@ -21,7 +21,7 @@ public class EndScreen extends JPanel {
         if(win) {
             try {
                 JLabel jl=new JLabel();
-                jl.setIcon(new javax.swing.ImageIcon("ressources/img/you_win.png"));
+                jl.setIcon(new javax.swing.ImageIcon(Config.ICON_WON));
                 jl.setHorizontalAlignment(JLabel.CENTER);
                 jl.setVerticalAlignment(JLabel.CENTER);
                 add(jl, BorderLayout.CENTER);
@@ -33,7 +33,7 @@ public class EndScreen extends JPanel {
         else {
             try {
                 JLabel jl=new JLabel();
-                jl.setIcon(new javax.swing.ImageIcon("ressources/img/game_over.png"));
+                jl.setIcon(new javax.swing.ImageIcon(Config.ICON_LOST));
                 jl.setHorizontalAlignment(JLabel.CENTER);
                 jl.setVerticalAlignment(JLabel.CENTER);
                 add(jl, BorderLayout.CENTER);

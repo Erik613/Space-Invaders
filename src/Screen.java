@@ -33,7 +33,7 @@ public class Screen extends JPanel implements ActionListener {
 
         //set basic structure for game display
         setSize(dimensionX, dimensionY);
-        backgroundImg = new ImageIcon("ressources/img/background.png").getImage();
+        backgroundImg = new ImageIcon(Config.BOARD_BACKGROUND).getImage();
 
         setFocusable(true);
 

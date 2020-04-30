@@ -24,8 +24,8 @@ public class StartScreen extends JPanel {
         startButton = new JButton();
         JLabel jl = new JLabel();
 
-        ImageIcon startButtonIcon = new ImageIcon("ressources/img/start_button.png", "startbutton");
-        ImageIcon logoIcon = new ImageIcon("ressources/img/logo.jpg", "logo");
+        ImageIcon startButtonIcon = new ImageIcon(Config.BOARD_BUTTON, "startbutton");
+        ImageIcon logoIcon = new ImageIcon(Config.BOARD_LOGO, "logo");
         startButton.setIcon(startButtonIcon);
         jl.setIcon(logoIcon);
         jl.setHorizontalAlignment(JLabel.CENTER);
