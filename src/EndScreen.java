@@ -30,11 +30,10 @@ public class EndScreen extends JPanel {
     public void setEndText(boolean win) {
         if(win) {
             try {
-                JLabel jl=new JLabel();
-                jl.setIcon(new javax.swing.ImageIcon(Config.ICON_WON));
-                jl.setHorizontalAlignment(JLabel.CENTER);
-                jl.setVerticalAlignment(JLabel.CENTER);
-                add(jl, BorderLayout.CENTER);
+                endText.setIcon(new ImageIcon(Config.ICON_WON));
+                endText.setHorizontalAlignment(JLabel.CENTER);
+                endText.setVerticalAlignment(JLabel.CENTER);
+                add(endText, BorderLayout.CENTER);
             }catch (Exception ex){
                 endText.setText("Du hast gewonnen");
             }
@@ -42,11 +41,10 @@ public class EndScreen extends JPanel {
         }
         else {
             try {
-                JLabel jl=new JLabel();
-                jl.setIcon(new javax.swing.ImageIcon(Config.ICON_LOST));
-                jl.setHorizontalAlignment(JLabel.CENTER);
-                jl.setVerticalAlignment(JLabel.CENTER);
-                add(jl, BorderLayout.CENTER);
+                endText.setIcon(new ImageIcon(Config.ICON_LOST));
+                endText.setHorizontalAlignment(JLabel.CENTER);
+                endText.setVerticalAlignment(JLabel.CENTER);
+                add(endText, BorderLayout.CENTER);
             }catch (Exception ex){
                 endText.setText("Du hast verloren");
             }

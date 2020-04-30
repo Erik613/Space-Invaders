@@ -67,7 +67,7 @@ public class Game implements Runnable {
                     frame.pack();
                     screen.destroy();
                     endScreen.grabFocus();
-                    Thread.sleep(2000);
+                    Thread.sleep(3000);
                     break;
                 }
                 Thread.sleep(10);

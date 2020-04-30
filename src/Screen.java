@@ -39,13 +39,15 @@ public class Screen extends JPanel implements ActionListener {
 
     }
 
-    private void step() {
+    @Override
+    public void actionPerformed(ActionEvent actionEvent) {
         doKeyActions();
         spaceship.move();
         Bullet.move();
         moveAliens();
         Enemy.randomShoot();
         hitDetection();
+
     }
 
     /**
@@ -75,7 +77,9 @@ public class Screen extends JPanel implements ActionListener {
         }
     }
 
-    /** connects keys with movement on Screen */
+    /**
+     * connects keys with movement on Screen
+     */
     private void doKeyActions() {
         if(keyListener.getPressedKeys().contains(KeyPressedListener.MOVE_RIGHT))
             spaceship.setMoveDirectionRight();
@@ -120,11 +124,7 @@ public class Screen extends JPanel implements ActionListener {
         Toolkit.getDefaultToolkit().sync();
     }
 
-    @Override
-    public void actionPerformed(ActionEvent actionEvent) {
-        step();
 
-    }
 
     /**
      * deletes enemy or player if they get hit

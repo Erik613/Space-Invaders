@@ -22,13 +22,13 @@ public class StartScreen extends JPanel {
         content.setBackground(Color.BLACK);
 
         startButton = new JButton();
-        JLabel jl = new JLabel();
+        JLabel logo = new JLabel();
 
         ImageIcon startButtonIcon = new ImageIcon(Config.BOARD_BUTTON, "startbutton");
         ImageIcon logoIcon = new ImageIcon(Config.BOARD_LOGO, "logo");
         startButton.setIcon(startButtonIcon);
-        jl.setIcon(logoIcon);
-        jl.setHorizontalAlignment(JLabel.CENTER);
+        logo.setIcon(logoIcon);
+        logo.setHorizontalAlignment(JLabel.CENTER);
 
         startButton.setBackground(Color.BLACK);
         startButton.setVisible(true);
@@ -36,7 +36,7 @@ public class StartScreen extends JPanel {
         startButton.setBorderPainted(false);
         startButton.addActionListener(e -> started = true);
 
-        content.add(jl);
+        content.add(logo);
         content.add(startButton);
         content.add(new JLabel());
 
