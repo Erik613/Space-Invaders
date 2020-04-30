@@ -2,6 +2,9 @@ import java.util.ArrayList;
 import java.util.Timer;
 import java.util.TimerTask;
 
+/**
+ * class represents the Enemy
+ */
 public class Enemy extends DrawableObject {
 
 
@@ -11,12 +14,19 @@ public class Enemy extends DrawableObject {
     private static ArrayList<Enemy> enemies;
 
 
+    /**
+     *
+     */
     private Enemy () {
         super(Config.ENEMY_ICON, "alien");
         gun = new Gun(Config.ENEMY_GUN_COOLDOWN, Bullet.BulletType.BULLET_ENEMY);
         enemies.add(this);
     }
 
+    /**
+     *
+     * @return ArrayList of enemies
+     */
     public static ArrayList<Enemy> getEnemies() {
 
         if (enemies != null)
@@ -36,6 +46,9 @@ public class Enemy extends DrawableObject {
         return enemies;
     }
 
+    /**
+     * random shoots for the enemies
+     */
     public static void randomShoot() {
         if(enemies == null || !canShoot)
             return;
@@ -51,19 +64,32 @@ public class Enemy extends DrawableObject {
         }, 1000);
     }
 
+    /**
+     *
+     */
     public static void reset() {
         enemies = null;
     }
 
+    /**
+     *
+     */
     @Override
     public void destroy() {
         enemies.remove(this);
     }
 
+    /**
+     * @return
+     */
     public static boolean isMoveRight() {
         return moveRight;
     }
 
+    /**
+     * @param x X position on screen
+     * @throws Exception if X Position is out of Screen
+     */
     @Override
     public void setX(int x) throws Exception {
         try {
