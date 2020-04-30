@@ -1,5 +1,5 @@
 import javax.swing.*;
-/* game object */
+/** game object */
 public class Game implements Runnable {
     private JFrame frame;
     private Screen screen;  //display for the game
@@ -7,6 +7,9 @@ public class Game implements Runnable {
     private static GameStatus gameStatus;
     private EndScreen endScreen;
 
+    /**
+     * witch status is the game in
+     */
     public enum GameStatus {
         RUNNING,
         WON,
@@ -15,6 +18,9 @@ public class Game implements Runnable {
     }
 
 
+    /**
+     *
+     */
     public Game(){
         gameStatus = GameStatus.NOT_STARTED;
         startScreen = new StartScreen();
@@ -35,6 +41,9 @@ public class Game implements Runnable {
 
     }
 
+    /**
+     *
+     */
     @Override
     public void run() {
         while (true) {
@@ -72,6 +81,9 @@ public class Game implements Runnable {
 
     }
 
+    /**
+     * resets the Game
+     */
     private void resetGame() {
         Enemy.reset();
         Bullet.reset();
@@ -85,6 +97,10 @@ public class Game implements Runnable {
         this.run();
     }
 
+    /**
+     * set the game Status
+     * @param gameStatus the game status
+     */
     public static void setGameStatus(GameStatus gameStatus) {
         Game.gameStatus = gameStatus;
     }
