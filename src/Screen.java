@@ -3,7 +3,7 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-/*
+/**
  * class represents game display
  * all game objects & action are
  * seen on Screen
@@ -48,6 +48,9 @@ public class Screen extends JPanel implements ActionListener {
         hitDetection();
     }
 
+    /**
+     * checks if player or enemy gets hit by a bullet
+     */
     private void hitDetection() {
         try {
             for (Bullet b : Bullet.getBullets()) {
@@ -72,7 +75,7 @@ public class Screen extends JPanel implements ActionListener {
         }
     }
 
-    /* connects keys with movement on Screen */
+    /** connects keys with movement on Screen */
     private void doKeyActions() {
         if(keyListener.getPressedKeys().contains(KeyPressedListener.MOVE_RIGHT))
             spaceship.setMoveDirectionRight();
@@ -84,7 +87,7 @@ public class Screen extends JPanel implements ActionListener {
             spaceship.getGun().shoot(spaceship.getX(), spaceship.getY());
     }
 
-    /* draw game pieces on Screen */
+    /** draw game pieces on Screen */
     private void draw(Graphics graphics) {
         Graphics2D g2d = (Graphics2D) graphics;
 
@@ -123,6 +126,9 @@ public class Screen extends JPanel implements ActionListener {
 
     }
 
+    /**
+     * deletes enemy or player if they get hit
+     */
     public void destroy() {
         this.spaceship = null;
         this.keyListener = null;
@@ -135,6 +141,9 @@ public class Screen extends JPanel implements ActionListener {
             timer.start();
     }
 
+    /**
+     * moves the enemy ships
+     */
     public void moveAliens() {
         boolean moveY = false;
         int index = Enemy.getEnemies().size();
