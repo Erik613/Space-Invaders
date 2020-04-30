@@ -2,7 +2,7 @@ import java.lang.reflect.InvocationTargetException;
 import java.util.Timer;
 import java.util.TimerTask;
 /**
- * gun class, enabeles game characters
+ * gun class, enables game characters
  * to shoot bullets
  */
 public class Gun {

@@ -11,6 +11,7 @@ public interface Config {
     int BOARD_HEIGHT = Toolkit.getDefaultToolkit().getScreenSize().height;
     int BOARD_BORDER_LEFT = 25;
     int BOARD_BORDER_RIGHT = 25;
+    int BOARD_BORDER_UP = 25;
     String BOARD_LOGO = "ressources/img/logo.jpg";
     String BOARD_BUTTON = "ressources/img/start_button.png";
     String BOARD_BACKGROUND = "ressources/img/background.png";

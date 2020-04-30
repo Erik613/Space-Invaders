@@ -29,21 +29,23 @@ public class Enemy extends DrawableObject {
      */
     public static ArrayList<Enemy> getEnemies() {
 
-        if (enemies != null)
+        if(enemies != null) {
             return enemies;
-        enemies = new ArrayList<Enemy>();
-        for (int x = Config.BOARD_BORDER_LEFT; x < (Config.BOARD_WIDTH - Config.BOARD_BORDER_RIGHT); x += Config.BOARD_WIDTH/9) {
-            for (int y = Config.BOARD_BORDER_RIGHT; y < Config.BOARD_HEIGHT/2; y += Config.BOARD_WIDTH/9) {
-                Enemy e = new Enemy();
-                try {
-                    e.setX(x);
-                    e.setY(y);
-                } catch (Exception ex) {
-                    System.out.println(ex);
+        }else {
+            enemies = new ArrayList<Enemy>();
+            for (int x = Config.BOARD_BORDER_LEFT; x < (Config.BOARD_WIDTH - Config.BOARD_BORDER_RIGHT); x += Config.BOARD_WIDTH / 9) {
+                for (int y = Config.BOARD_BORDER_UP; y < Config.BOARD_HEIGHT / 2; y += Config.BOARD_WIDTH / 9) {
+                    Enemy e = new Enemy();
+                    try {
+                        e.setX(x);
+                        e.setY(y);
+                    } catch (Exception ex) {
+                        System.out.println(ex);
+                    }
                 }
             }
+            return enemies;
         }
-        return enemies;
     }
 
     /**
@@ -82,7 +84,7 @@ public class Enemy extends DrawableObject {
     /**
      * @return
      */
-    public static boolean isMoveRight() {
+    public static boolean shouldMoveRight() {
         return moveRight;
     }
 

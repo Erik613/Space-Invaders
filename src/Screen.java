@@ -152,7 +152,11 @@ public class Screen extends JPanel implements ActionListener {
         for(int i = 0; i < index; i++) {
             Enemy e = Enemy.getEnemies().get(i);
             try {
-                e.setX(e.getX() + (Enemy.isMoveRight() ? Config.ENEMY_SPEED : ((Config.ENEMY_SPEED) * -1)));
+                if(Enemy.shouldMoveRight()){
+                    e.setX(e.getX() + Config.ENEMY_SPEED);
+                }else{
+                    e.setX(e.getX() + (Config.ENEMY_SPEED * -1));
+                }
             } catch (Exception ex) {
                 moveY = true;
                 index = Enemy.getEnemies().indexOf(e);

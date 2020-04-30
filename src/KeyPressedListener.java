@@ -14,7 +14,7 @@ public class KeyPressedListener extends KeyAdapter{
     public final static int SHOOT = KeyEvent.VK_SPACE;
 
     private final Set<Integer> pressedKeys = new HashSet<Integer>();
-    private final List<KeyAdapter> controls = new ArrayList<>();
+    //private final List<KeyAdapter> controls = new ArrayList<>();
 
 
     /**
