@@ -1,9 +1,15 @@
 import javax.swing.*;
 import java.awt.*;
 
+/**
+ * class represents the End Screen of the Game
+ */
 public class EndScreen extends JPanel {
     private JLabel endText;
 
+    /**
+     * the actual End Screen
+     */
     public EndScreen() {
         super(new BorderLayout(5, 5));
         this.setVisible(true);
@@ -17,6 +23,10 @@ public class EndScreen extends JPanel {
         add(endText, BorderLayout.CENTER);
     }
 
+    /**
+     * set the End Screen for win or lose
+     * @param win True if player win the game
+     */
     public void setEndText(boolean win) {
         if(win) {
             try {
