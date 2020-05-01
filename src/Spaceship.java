@@ -11,15 +11,15 @@ public class Spaceship extends DrawableObject{
     /* spaceship attributes */
     private int speed;
     private int moveSpeedX;
-    private boolean isAlive;
+    private boolean isAlive;        //indication if Spaceship is hit
     private Gun gun;
 
 
     /**
-     * the Spaceship of the player
+     * constructor for Spaceship
      */
     public Spaceship() {
-        super(Config.SPACESHIP_ICON, "Spaceship");
+        super(Config.SPACESHIP_ICON, "Spaceship");          //set Image
         this.isAlive = true;
         try {
             this.setX(Config.SPACESHIP_POSITIONX);
@@ -35,7 +35,9 @@ public class Spaceship extends DrawableObject{
 
 
     /**
-     * move for the player
+     * move spaceship horizontal
+     * try setting new x coordinate
+     * by adding moveSpeed to old coordinate
      */
     public void move() {
         if(getX() >= 0 && getX()<= Config.BOARD_WIDTH)
@@ -76,14 +78,16 @@ public class Spaceship extends DrawableObject{
     }
 
     /**
-     * @return
+     * check if spaceship is hit
+     * @return indication if spaceship is alive
      */
     public boolean isAlive() {
         return isAlive;
     }
 
     /**
-     *
+     * destroy spaceship
+     * alive status is set to false
      */
     @Override
     public void destroy() {

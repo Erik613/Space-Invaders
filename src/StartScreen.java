@@ -7,13 +7,16 @@ import java.io.IOException;
 
 /**
  * class represents the Start Screen of the Game
+ * object is shown when program starts
  */
 public class StartScreen extends JPanel {
-    private JButton startButton;
-    private boolean started = false;
+    private JButton startButton;    //button that starts actual game
+    private boolean started = false;    //indication if game is started
 
     /**
-     * the actual Start Screen
+     * constructor for Start Screen
+     * all basic settings for panel are set
+     * and startButton is added
      */
     public StartScreen() {
         super(new BorderLayout(300, 300));
@@ -21,21 +24,24 @@ public class StartScreen extends JPanel {
         JPanel content = new JPanel(new GridLayout(3, 1));
         content.setBackground(Color.BLACK);
 
-        startButton = new JButton();
-        JLabel logo = new JLabel();
+        startButton = new JButton();        //create new button
+        JLabel logo = new JLabel();         //create new label that'll display start-Icon
 
-        ImageIcon startButtonIcon = new ImageIcon(Config.BOARD_BUTTON, "startbutton");
+        //load logo for startScreen
         ImageIcon logoIcon = new ImageIcon(Config.BOARD_LOGO, "logo");
-        startButton.setIcon(startButtonIcon);
         logo.setIcon(logoIcon);
         logo.setHorizontalAlignment(JLabel.CENTER);
 
+        //load image and set Icon for button
+        ImageIcon startButtonIcon = new ImageIcon(Config.BOARD_BUTTON, "startbutton");
+        startButton.setIcon(startButtonIcon);
         startButton.setBackground(Color.BLACK);
         startButton.setVisible(true);
         startButton.setFocusPainted(false);
         startButton.setBorderPainted(false);
         startButton.addActionListener(e -> started = true);
 
+        //add logo & startButton to panel
         content.add(logo);
         content.add(startButton);
         content.add(new JLabel());
@@ -44,8 +50,8 @@ public class StartScreen extends JPanel {
     }
 
     /**
-     * if the Game Starts
-     * @return Start
+     * check if game started
+     * @return if game has started
      */
     public boolean getStarted() {
         return started;

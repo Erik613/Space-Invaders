@@ -2,20 +2,30 @@ import javax.swing.*;
 import java.awt.*;
 
 /**
- * class represents all drawable Objects
+ * parent class for all drawable Objects
  */
 public abstract class DrawableObject {
-    private int x;
-    private int y;
-    private int height;
-    private int width;
-    protected Image img;
+    private int x;          //x coordinate on Screen
+    private int y;          //y coordinate on Screen
+    private int height;     // object height
+    private int width;      //object width
+    protected Image img;    //image for object
 
+
+    /**
+     * constructor for drawableObject
+     * @param imgPath where image is stored
+     * @param imgDesc description for image
+     */
     protected DrawableObject(String imgPath, String imgDesc) {
-        img = new ImageIcon(imgPath, imgDesc).getImage();
-        this.height = img.getHeight(null);
+        img = new ImageIcon(imgPath, imgDesc).getImage();   // create new ImageIcon
+        this.height = img.getHeight(null);          //get height & width form image
         this.width = img.getWidth(null);
     }
+
+    /**
+     * empty constructor for drawableObject
+     */
     protected DrawableObject(){
 
     }
@@ -96,22 +106,25 @@ public abstract class DrawableObject {
     }
 
     /**
-     * @return
+     * get image of object
+     * @return imageIcon for object
      */
     public Image getImg() {
         return img;
     }
 
     /**
-     * @param r
-     * @return
+     * check if to objects collide
+     * @param r other drawableObject
+     * @return true/false depending if objects share x or y coordinates
      */
     public boolean hit (DrawableObject r) {
+        //check if the objects share any x/y coordinates, in which case they would collide
         return x < r.getX() + r.getWidth() && x + width > r.getX() && y < r.getY() + r.getHeight() && y + height > r.getY();
     }
 
     /**
-     *
+     * abstract method to destroy object
      */
     public abstract void destroy();
 }

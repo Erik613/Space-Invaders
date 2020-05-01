@@ -1,14 +1,19 @@
 import javax.swing.*;
-/** game object */
+/**
+ * class represents the actual game
+ * decides which status the game is at
+ * and which Screen to display
+ */
 public class Game implements Runnable {
     private JFrame frame;
     private Screen screen;  //display for the game
-    private StartScreen startScreen;
+    private StartScreen startScreen;    //screen before actual game starts
     private static GameStatus gameStatus;
-    private EndScreen endScreen;
+    private EndScreen endScreen;        //screen after game ends
 
     /**
-     * witch status is the game in
+     * list of statutes
+     * that the game can have
      */
     public enum GameStatus {
         RUNNING,
@@ -19,7 +24,8 @@ public class Game implements Runnable {
 
 
     /**
-     *
+     * constructor for game
+     * sets status and creates screens
      */
     public Game(){
         gameStatus = GameStatus.NOT_STARTED;
@@ -42,33 +48,35 @@ public class Game implements Runnable {
     }
 
     /**
-     *
+     * method to start actual SpaceInvaders game
      */
     @Override
     public void run() {
-        while (true) {
+        while (true) {      //loops run till game is won or lost
             try {
+                //if game has not started & start Button is pressed
                 if(gameStatus == GameStatus.NOT_STARTED && startScreen.getStarted()) {
                     startScreen.setVisible(false);
                     screen.setVisible(true);
-                    frame.add(screen);
+                    frame.add(screen);                      //show actual game screen
                     frame.remove(startScreen);
                     frame.pack();
                     Thread.sleep(1000);
                     screen.start();
                     screen.grabFocus();
-                    setGameStatus(GameStatus.RUNNING);
+                    setGameStatus(GameStatus.RUNNING);          //change status
+                    //game has ended
                 } else if (gameStatus == GameStatus.WON || gameStatus == GameStatus.LOST) {
-                    endScreen.setEndText(gameStatus == GameStatus.WON);
+                    endScreen.setEndLabel(gameStatus == GameStatus.WON);    //choose which label to display
                     screen.setVisible(false);
                     endScreen.setVisible(true);
-                    frame.add(endScreen);
+                    frame.add(endScreen);               //display endscreen
                     frame.remove(screen);
                     frame.pack();
                     screen.destroy();
                     endScreen.grabFocus();
                     Thread.sleep(3000);
-                    break;
+                    break;                          //break while.loop
                 }
                 Thread.sleep(10);
                 this.frame.repaint();
@@ -94,7 +102,7 @@ public class Game implements Runnable {
         frame.remove(endScreen);
         startScreen.setVisible(true);
         frame.pack();
-        this.run();
+        this.run();             //start new round
     }
 
     /**

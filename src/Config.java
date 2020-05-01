@@ -1,12 +1,13 @@
 import java.awt.*;
 
-/*
- * interface that holds all
- * basic settings for the game
+/**
+ * interface that contains all settings
+ * all basic settings for the game
+ * are stored here
  */
-
 public interface Config {
-    //settings for the Board
+
+    /* settings for the Board */
     int BOARD_WIDTH = Toolkit.getDefaultToolkit().getScreenSize().width;
     int BOARD_HEIGHT = Toolkit.getDefaultToolkit().getScreenSize().height;
     int BOARD_BORDER_LEFT = 25;
@@ -18,18 +19,18 @@ public interface Config {
     String ICON_WON = "ressources/img/you_win.png";
     String ICON_LOST = "ressources/img/game_over.png";
 
-    //settings for the players character
+    /* settings for the players character */
     int SPACESHIP_GUN_COOLDOWN = 600;
     int SPACESHIP_POSITIONY = BOARD_HEIGHT - (BOARD_HEIGHT / 8);
     int SPACESHIP_POSITIONX = BOARD_WIDTH / 2;
     String SPACESHIP_ICON = "ressources/img/baseshipa.png";
 
-    //settings for the enemies
+    /* settings for the enemies */
     int ENEMY_SPEED = 1;
     int ENEMY_GUN_COOLDOWN = 0;
     String ENEMY_ICON = "ressources/img/alien.png";
 
-    //settings for the bullet
+    /* settings for the bullet */
     int BULLET_POSITION_CORRECTION = 25;
     int BULLET_HEIGHT = 15;
     int BULLET_WIDTH = 5;

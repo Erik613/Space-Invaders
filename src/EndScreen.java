@@ -3,52 +3,49 @@ import java.awt.*;
 
 /**
  * class represents the End Screen of the Game
+ * is shown when game ends
  */
 public class EndScreen extends JPanel {
-    private JLabel endText;
+    private JLabel endLabel;     //text/image that is shown
 
     /**
-     * the actual End Screen
+     * constructor for EndScreen
+     * set al basic settings for the panel
      */
     public EndScreen() {
         super(new BorderLayout(5, 5));
         this.setVisible(true);
         this.setBackground(Color.BLACK);
-        endText = new JLabel();
-        endText.setFont(new Font("Arial", Font.PLAIN, 40));
-        endText.setForeground(Color.YELLOW);
-        endText.setHorizontalAlignment(JLabel.CENTER);
-        endText.setVerticalAlignment(JLabel.CENTER);
-        endText.setSize(200, 50);
-        add(endText, BorderLayout.CENTER);
+
+        endLabel = new JLabel();
+        endLabel.setHorizontalAlignment(JLabel.CENTER);     //position label in center
+        endLabel.setVerticalAlignment(JLabel.CENTER);
+        endLabel.setSize(200, 50);
+        add(endLabel, BorderLayout.CENTER);                 //add label
     }
 
     /**
-     * set the End Screen for win or lose
+     * chooses what to display in endLabel
      * @param win True if player win the game
      */
-    public void setEndText(boolean win) {
-        if(win) {
-            try {
-                endText.setIcon(new ImageIcon(Config.ICON_WON));
-                endText.setHorizontalAlignment(JLabel.CENTER);
-                endText.setVerticalAlignment(JLabel.CENTER);
-                add(endText, BorderLayout.CENTER);
-            }catch (Exception ex){
-                endText.setText("Du hast gewonnen");
+    public void setEndLabel(boolean win) {
+        if(win) {                                           //game is won
+            try {                                           //try loading image
+                endLabel.setIcon(new ImageIcon(Config.ICON_WON));
+            }catch (Exception ex){                          //when image can not be loaded
+                endLabel.setFont(new Font("Arial", Font.PLAIN, 40));    //show text instead
+                endLabel.setForeground(Color.YELLOW);
+                endLabel.setText("Du hast gewonnen");
             }
-
         }
-        else {
-            try {
-                endText.setIcon(new ImageIcon(Config.ICON_LOST));
-                endText.setHorizontalAlignment(JLabel.CENTER);
-                endText.setVerticalAlignment(JLabel.CENTER);
-                add(endText, BorderLayout.CENTER);
-            }catch (Exception ex){
-                endText.setText("Du hast verloren");
+        else {                                              //game is lost
+            try {                                           //try loading image
+                endLabel.setIcon(new ImageIcon(Config.ICON_LOST));
+            }catch (Exception ex){                          //when image can not be loaded
+                endLabel.setFont(new Font("Arial", Font.PLAIN, 40));    //show text instead
+                endLabel.setForeground(Color.YELLOW);
+                endLabel.setText("Du hast verloren");
             }
-
         }
     }
 }
